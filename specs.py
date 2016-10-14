@@ -13,13 +13,14 @@ for link in variants_dict.values():
     #driver.switch_to.default_content()
     # WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "a[title*='" + user_input + "']"))).click()
 
-    driver.find_element_by_css_selector("a[href*='specification']").click()
+    driver.get(driver.find_element_by_css_selector("a[href*='specification']").get_attribute("href"))
 
 
     ############################################################################################################################
 
 
     category = {}
+    '''#keyf_collection = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, "//table[@class='keyfeature']/tbody/tr")))
     keyf_collection = driver.find_elements_by_xpath("//table[@class='keyfeature']/tbody/tr")
     key_specs = {}
 
@@ -31,31 +32,39 @@ for link in variants_dict.values():
             if index % 2 == 1:
                 key_specs[td[index - 1].text.encode('UTF8')] = i.text.encode('UTF8')
     category.setdefault('Key Specs', []).append(key_specs)
-
+'''
 
     ############################################################################################################################
 
 
 
-    techf_collection = driver.find_elements_by_xpath("//div[@class='specinner']/div/table")
+    techf_collection = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//h3")
+    details = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
+
 
     # Displays technical specs
-    for li in range(len(techf_collection)):
-        catg = techf_collection[li].find_elements_by_xpath("//div[@class='specinner']/div/table//th")[li].get_attribute(
-            'title').encode('UTF8')
-        tr = techf_collection[li].find_elements_by_tag_name('tr')
+    for count, i1 in enumerate(techf_collection):
+        catg = i1.get_attribute('title').encode('UTF8')
+        print 'catg', catg
+        #tr = techf_collection[li].find_elements_by_tag_name('tr')
         specs = {}
-        for i in range(len(tr)):
-            td = tr[i].find_elements_by_tag_name('td')
-            for index, j in enumerate(td):
+
+        #print details[count].find_elements_by_xpath("//li"), details[count].find_elements_by_xpath("//li").text
+        #for i in details:
+        #    print i.text
+        #print details[count].find_elements_by_xpath("//li").text
+
+        #td = tr[i].find_elements_by_tag_name('td')
+        #for index, j in enumerate(i):
+        #print j, j.text
                 # Even numbers are the keys and Odd numbers are the values
-                if index % 2 == 1:
-                    if 'has not' in j.get_attribute('title'):
+            #if index % 2 == 1:
+        '''if 'has not' in j.get_attribute('title'):
                         specs[td[index - 1].text.encode('UTF8')] = 'False'
                     elif 'has' in j.get_attribute('title'):
                         specs[td[index - 1].text.encode('UTF8')] = 'True'
-                    else:
-                        specs[td[index - 1].text.encode('UTF8')] = j.text.encode('UTF8')
+                    else:'''
+                #    specs[td[index - 1].text.encode('UTF8')] = j.text.encode('UTF8')
         category.setdefault(catg, []).append(specs)
 
 
