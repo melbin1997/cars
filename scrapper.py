@@ -10,6 +10,7 @@ variants_dict = {'Tata Bolt Revotron XE': 'https://www.cardekho.com/overview/Tat
 driver = webdriver.Chrome()
 
 for link in variants_dict.values():
+    original = link
     s = link.split("/")
     s[3] = 'specs'
     link = '/'.join(s)
@@ -23,9 +24,9 @@ for link in variants_dict.values():
 
     ############################################################################################################################
 
-    category = {}
-    techf_collection = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//h3")
-    details = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
+    #category = {}
+    #techf_collection = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//h3")
+    #details = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
 
     '''for count, i1 in enumerate(techf_collection):
         i1.text
@@ -40,12 +41,13 @@ for link in variants_dict.values():
     	except Exception as e:
       		pass
         #tr = techf_collection[li].find_elements_by_tag_name('tr')'''
-    #specs = {}
-    for i,j in zip(details[0].find_elements_by_xpath("//li//div[@class='compareleft textalignunset']"),details[0].find_elements_by_xpath("//li//div[contains(@class,'compareright')]")):
+    specs = {}
+    details_specs = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
+    for i,j in zip(details_specs[0].find_elements_by_xpath("//li//div[@class='compareleft textalignunset']"),details_specs[0].find_elements_by_xpath("//li//div[contains(@class,'compareright')]")):
         if(j.text != '-'):
             print i.text, '-->', j.text
             #category.setdefault(i.text.encode('UTF8')).append(j.text.encode('UTF8'))
-            category[i.text.encode('UTF8')] = j.text.encode('UTF8')
+            specs[i.text.encode('UTF8')] = j.text.encode('UTF8')
     '''if(i.get_attribute('title') != ''):
             print i.get_attribute('title')
         if(i.text != ''):
@@ -58,8 +60,29 @@ for link in variants_dict.values():
 ############################################################################################################################
 
 
-    print category
+    print "Specifications"
+    print specs
 
+    link = original
+    s = link.split("/")
+    s[3] = 'features'
+    link = '/'.join(s)
+    link = link[:-4] + "-features.htm"
+    print link
+    driver.get(link)
+
+
+    features = {}
+    details_fe = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
+    for i,j in zip(details_fe[0].find_elements_by_xpath("//li//div[@class='compareleft textalignunset']"),details_fe[0].find_elements_by_xpath("//li//div[contains(@class,'compareright')]//div[@class='W50Percent']")):
+        if('has not' not in j.get_attribute("title")):
+            print i.text, '-->', 'Yes'
+            features[i.text.encode('UTF8')] = 'Yes'
+            #category.setdefault(i.text.encode('UTF8')).append(j.text.encode('UTF8'))
+
+
+    print "Features"
+    print features
 
 # print
 # print "Time taken = ",time.time()-q," seconds"
