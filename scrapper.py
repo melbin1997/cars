@@ -10,6 +10,15 @@ variants_dict = {'Tata Bolt Revotron XE': 'https://www.cardekho.com/overview/Tat
 driver = webdriver.Chrome()
 
 for link in variants_dict.values():
+    print link
+    driver.get(link)
+
+    print "Review"
+
+    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//div[@id='descriptionReadMore']")))
+
+    print driver.find_element_by_xpath("//div[@id='descriptionReadMore']").text
+
     original = link
     s = link.split("/")
     s[3] = 'specs'
@@ -41,9 +50,17 @@ for link in variants_dict.values():
     	except Exception as e:
       		pass
         #tr = techf_collection[li].find_elements_by_tag_name('tr')'''
+
+    #IMPLICIT WAIT !!
+    #driver.implicitly_wait(10)
     specs = {}
-    details_specs = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
-    for i,j in zip(details_specs[0].find_elements_by_xpath("//li//div[@class='compareleft textalignunset']"),details_specs[0].find_elements_by_xpath("//li//div[contains(@class,'compareright')]")):
+
+
+    #details_specs = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
+
+    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")))
+
+    for i,j in zip(driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li//div[@class='compareleft textalignunset']"),driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li//div[contains(@class,'compareright')]")):
         if(j.text != '-'):
             print i.text, '-->', j.text
             #category.setdefault(i.text.encode('UTF8')).append(j.text.encode('UTF8'))
@@ -73,8 +90,10 @@ for link in variants_dict.values():
 
 
     features = {}
-    details_fe = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
-    for i,j in zip(details_fe[0].find_elements_by_xpath("//li//div[@class='compareleft textalignunset']"),details_fe[0].find_elements_by_xpath("//li//div[contains(@class,'compareright')]//div[@class='W50Percent']")):
+
+    WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")))
+    #details_fe = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
+    for i,j in zip(driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li//div[@class='compareleft textalignunset']"),driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li//div[contains(@class,'compareright')]//div[@class='W50Percent']")):
         if('has not' not in j.get_attribute("title")):
             print i.text, '-->', 'Yes'
             features[i.text.encode('UTF8')] = 'Yes'
