@@ -27,32 +27,41 @@ for link in variants_dict.values():
     techf_collection = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//h3")
     details = driver.find_elements_by_xpath("//div[@class='specinner']//div[@id = 'open-by-default-example']//div//ul//li")
 
+    '''for count, i1 in enumerate(techf_collection):
+        i1.text
+    print "END"'''
 
-    # Displays technical specs
+
+    '''# Displays technical specs
     for count, i1 in enumerate(techf_collection):
     	try:
       		catg = i1.get_attribute('title').encode('UTF8')
       		print 'catg', catg
     	except Exception as e:
       		pass
-        #tr = techf_collection[li].find_elements_by_tag_name('tr')
-    	specs = {}
-    	for i in details[count].find_elements_by_xpath("//li//div[@class='compareright']"):
-        	if(i.get_attribute('title') != ''):
-        		print i.get_attribute('title')
-        	if(i.text != ''):
-        		print i.text
-    	category.setdefault(catg, []).append(specs)
-    	break
-    
+        #tr = techf_collection[li].find_elements_by_tag_name('tr')'''
+    #specs = {}
+    for i,j in zip(details[0].find_elements_by_xpath("//li//div[@class='compareleft textalignunset']"),details[0].find_elements_by_xpath("//li//div[contains(@class,'compareright')]")):
+        if(j.text != '-'):
+            print i.text, '-->', j.text
+            #category.setdefault(i.text.encode('UTF8')).append(j.text.encode('UTF8'))
+            category[i.text.encode('UTF8')] = j.text.encode('UTF8')
+    '''if(i.get_attribute('title') != ''):
+            print i.get_attribute('title')
+        if(i.text != ''):
+            print i.text, j.text
+        '''
 
-    ############################################################################################################################
+        #category.setdefault(catg, []).append(specs)
 
 
-    	print category
+############################################################################################################################
 
 
-    # print
-    # print "Time taken = ",time.time()-q," seconds"
+    print category
+
+
+# print
+# print "Time taken = ",time.time()-q," seconds"
 
 driver.close()
