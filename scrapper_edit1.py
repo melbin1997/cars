@@ -154,6 +154,32 @@ for link in variants_dict:
 			print ""
 			print i
 			print output[i]
+		"""
+
+
+
+
+
+
+
+
+
+
+						WRITE THE CODE TO TAKE THE LINK OF PHOTOS............
+						THEN ADD IT AS output['photos']=[link1,link2,link3,..........,linkn]
+
+
+
+
+
+
+
+
+
+
+
+
+		"""
 		g[flag]=output
 		pickle.dump(g,open("variant_output.p","wb"))
 		flag+=1
