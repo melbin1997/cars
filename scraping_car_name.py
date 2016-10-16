@@ -1,13 +1,11 @@
 from selenium import webdriver
+import pickle
 #import time
 
 #q = time.time()
 driver = webdriver.Chrome()
-driver.get("file:///home/georgy/Downloads/CarDekho%20-%20Cars%20in%20India,%20New%20Car%20Prices%202016,%20Buy%20and%20Sell%20Used%20Cars%20_%20CarDekho.com.html")
+driver.get("https://www.cardekho.com/")
 #driver.get("https://www.cardekho.com/")
-
-
-
 
 driver.find_element_by_id("searchNewCarByBrandInputDiv").click()
 s = driver.find_element_by_id("newCarBrandSelect")
@@ -51,6 +49,10 @@ for i in output.keys():
 	if len(output[i])==0:
 		del output[i]
 print output
+
+fileObject = open("carnm",'wb')
+pickle.dump(output,fileObject)  
+fileObject.close()
 # print a
 # print c
 

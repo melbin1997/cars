@@ -10,6 +10,6 @@ for url in variants_dict.values():
 		soup = BeautifulSoup(page.read())
 		soup=soup.find("div", {"id": "descriptionReadMore"})
 		for node in soup.findAll('p'):
-				print '\n'.join(node.findAll(text=True))
+				print u'\n'.join(node.findAll(text=True))
 	except Exception as e:
 		print url
