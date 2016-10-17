@@ -1,8 +1,8 @@
 import pickle
-a=pickle.load(open("output.p","rb"))
+a=pickle.load(open("main_one_car.p","r"))
 for i in a.keys():
-	for j in a[i]:
-		print j
-		print a[i][j]
-		break
-	break
+	for r in a[i].keys():
+		print r
+		for temp in a[i][r]:
+			print temp 
+	
