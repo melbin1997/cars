@@ -11,4 +11,5 @@ def p():
 
 	price = WebDriverWait(driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, "//div[@class = 'priceleft']//span")))
 	
-	return price[2].text,price[3].text[:-1]
+	#return price[2].text,price[3].text[:-1]
+	return price.text
