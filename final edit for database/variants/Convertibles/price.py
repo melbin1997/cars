@@ -15,9 +15,7 @@ for url in links:
 		page = urllib.urlopen(url)
 		soup = BeautifulSoup(page.read())
 		soup=soup.find("div", {"class": "priceleft"})
-		for node in soup.findAll('span'):
-				print ''.join(node.findAll(text=True)[2:4])
-				break
+		print ''.join(soup.findAll('span')[0].findAll(text=True)[2:4])
 	except Exception as e:
 		print url
 
