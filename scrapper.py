@@ -17,7 +17,7 @@ for link in variants_dict.values():
 
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.XPATH, "//section[@id='variantwrap']")))
 
-    for k in  driver.find_elements_by_xpath("//section[@id='variantwrap']"):
+    for k in driver.find_elements_by_xpath("//section[@id='variantwrap']"):
     	print k.text
 
     original = link
