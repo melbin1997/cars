@@ -12,7 +12,6 @@ sedans=pickle.load(open("variant_sedan_output.p","rb"))
 suv=pickle.load(open("variant_suv_output.p","rb"))
 price=pickle.load(open("price.p","rb"))
 
-final_output={}
 err=[]
 
 dict_convertibles={}
@@ -144,3 +143,5 @@ for i in suv.keys():
 	except:
 		err.append(["suv",suv[i]['Review_link']])
 print len(err)
+
+final_output=[dict_convertibles,dict_coupe,dict_hatchback,dict_hybrid,dict_luxury,dict_minivans,dict_muv,dict_sedans,dict_suv]
