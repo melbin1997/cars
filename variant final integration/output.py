@@ -12,6 +12,8 @@ pickup=pickle.load(open("variant_pickup_output.p","rb"))
 sedans=pickle.load(open("variant_sedan_output.p","rb"))
 suv=pickle.load(open("variant_suv_output.p","rb"))
 
+price=pickle.load(open("price.p","rb"))
+
 final_output={}
 
 num=0
@@ -23,7 +25,7 @@ for i in convertibles.keys():
 	dict_convertibles['Mileage'] = float(convertibles[i]['Specs']['Mileage-Highway (kmpl)'])
 	dict_convertibles['Specs and Features'] = [convertibles[i]['Specs'],convertibles[i]['Features']]
 	dict_convertibles['Review'] = convertibles[i]['Review']
-	#dict_convertibles['Price']	= price[convertibles[i]['Review_link']]
+	dict_convertibles['Price']	= price[convertibles[i]['Review_link']]
 	mdict_convertibles[num]=dict_convertibles
 	num+=1
 	final_output['Convertibles']=mdict_convertibles
@@ -39,7 +41,7 @@ for i in coupe.keys():
 	dict_coupe['Mileage'] = float(coupe[i]['Specs']['Mileage-Highway (kmpl)'])
 	dict_coupe['Specs and Features'] = [coupe[i]['Specs'],coupe[i]['Features']]
 	dict_coupe['Review'] = coupe[i]['Review']
-	#dict_coupe['Price']	= price[coupe[i]['Review_link']]
+	dict_coupe['Price']	= price[coupe[i]['Review_link']]
 	mdict_coupe[num]=dict_coupe
 	num+=1
 final_output['Coupe']=mdict_coupe
@@ -75,7 +77,7 @@ for i in hatchback.keys():
 
 	dict_hatchback['Specs and Features'] = [hatchback[i]['Specs'],hatchback[i]['Features']]
 	dict_hatchback['Review'] = hatchback[i]['Review']
-	#dict_hatchback['Price']	= price[hatchback[i]['Review_link']]
+	dict_hatchback['Price']	= price[hatchback[i]['Review_link']]
 	mdict_hatchback[num]=dict_hatchback
 	num+=1
 	final_output['Hatchback']=mdict_hatchback
@@ -113,7 +115,7 @@ for i in hybrid.keys():
 
 	dict_hybrid['Specs and Features'] = [hybrid[i]['Specs'],hybrid[i]['Features']]
 	dict_hybrid['Review'] = hybrid[i]['Review']
-	#dict_hybrid['Price']	= price[hybrid[i]['Review_link']]
+	dict_hybrid['Price']	= price[hybrid[i]['Review_link']]
 	mdict_hybrid[num]=dict_hybrid
 	num+=1
 	final_output['Hybrid']=mdict_hybrid
@@ -151,7 +153,7 @@ for i in luxury.keys():
 
 	dict_luxury['Specs and Features'] = [luxury[i]['Specs'],luxury[i]['Features']]
 	dict_luxury['Review'] = luxury[i]['Review']
-	#dict_luxury['Price']	= price[luxury[i]['Review_link']]
+	dict_luxury['Price']	= price[luxury[i]['Review_link']]
 	mdict_luxury[num]=dict_luxury
 	num+=1
 	final_output['Luxury']=mdict_luxury
@@ -189,7 +191,7 @@ for i in minivans.keys():
 
 	dict_minivans['Specs and Features'] = [minivans[i]['Specs'],minivans[i]['Features']]
 	dict_minivans['Review'] = minivans[i]['Review']
-	#dict_minivans['Price']	= price[minivans[i]['Review_link']]
+	dict_minivans['Price']	= price[minivans[i]['Review_link']]
 	mdict_minivans[num]=dict_minivans
 	num+=1
 	final_output['Minivans']=mdict_minivans
@@ -227,7 +229,7 @@ for i in muv.keys():
 
 	dict_muv['Specs and Features'] = [muv[i]['Specs'],muv[i]['Features']]
 	dict_muv['Review'] = muv[i]['Review']
-	#dict_muv['Price']	= price[muv[i]['Review_link']]
+	dict_muv['Price']	= price[muv[i]['Review_link']]
 	mdict_muv[num]=dict_muv
 	num+=1
 	final_output['MUV']=mdict_muv
@@ -271,7 +273,7 @@ for i in sedans.keys():
 
 	dict_sedans['Specs and Features'] = [sedans[i]['Specs'],sedans[i]['Features']]
 	dict_sedans['Review'] = sedans[i]['Review']
-	#dict_sedans['Price']	= price[sedans[i]['Review_link']]
+	dict_sedans['Price']	= price[sedans[i]['Review_link']]
 	mdict_sedans[num]=dict_sedans
 	num+=1
 	final_output['Sedans']=mdict_sedans
@@ -316,7 +318,7 @@ for i in suv.keys():
 
 	dict_suv['Specs and Features'] = [suv[i]['Specs'],suv[i]['Features']]
 	dict_suv['Review'] = suv[i]['Review']
-	#dict_suv['Price']	= price[suv[i]['Review_link']]
+	dict_suv['Price']	= price[suv[i]['Review_link']]
 	mdict_suv[num]=dict_suv
 	num+=1
 	final_output['SUV']=mdict_suv
