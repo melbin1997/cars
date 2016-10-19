@@ -42,8 +42,7 @@ pickle.dump(match, open("matched.p","wb"))
 
 for x in variants:
     if(x not in match):
-        print x,"was not paired"
-
+        match[variant] = 'abcd'
 
 #print variants
 #print len(variants)
