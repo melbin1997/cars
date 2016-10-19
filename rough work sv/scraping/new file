@@ -1,0 +1,8 @@
+def check():
+...     for key in a:
+...             if a[key]==[]:
+...                     print key
+
+a=pickle.load(open("images_found.p","rb"));check();len(a)
+
+b=['Lamborghini Huracan', 'Mercedes-Benz G-Class', 'BMW i8', 'Maserati Gran Cabrio', 'Toyota Camry', 'Hyundai Elantra', 'Mercedes-Benz GLS', 'Hyundai Creta', 'Mercedes-Benz A-Class', 'Renault Pulse', 'Porsche Boxster', 'Audi TT', 'Chevrolet Sail', 'Mercedes-Benz S-Class', 'Audi RS5', 'Maserati Ghibli', 'Mercedes-Benz AMG GT', 'Bugatti Veyron']
