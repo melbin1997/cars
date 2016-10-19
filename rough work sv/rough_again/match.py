@@ -9,6 +9,9 @@ match={}
 for i in main:
 	for j in variant:
 		if i in j:
+			print i,"***",j
 			match[i]=j
-print match
+		elif i.split(" ")[0]+i.split(" ")[1] in j.split(" ")[0]+j.split(" ")[1]:
+			match[i]=j
+print set(match.keys())-set(main())
 print len(variant)-len(match)
