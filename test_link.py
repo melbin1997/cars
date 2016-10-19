@@ -37,11 +37,8 @@ for car in cars:
             failed.append(car)
         time.sleep(2)
     except Exception as e:
-        print e
-        if("not reachable" in e):
-            driver = webdriver.Chrome()
-        else:
-            driver.get("https://www.cardekho.com")
+        driver = webdriver.Chrome()
+        driver.get("https://www.cardekho.com")
 
 pickle.dump(links, open("link.p","wb"))
 pickle.dump(failed, open("failed.p","wb"))
