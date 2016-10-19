@@ -57,4 +57,3 @@ for i in converted_hatch:
 
 print len(final_converted)
 pickle.dump(final_converted, open("final_converted.p", "wb"))
-
